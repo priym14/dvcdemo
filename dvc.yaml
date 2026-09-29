@@ -1,7 +1,30 @@
 stages:
-  evaluate:
-    cmd: python src/evaluate.py
-    deps:
-      - src/evaluate.py
+
+  prepare:
+    cmd: python src/prepare.py data/data.xml
+    params:
+      - prepare.split
+      - prepare.seed
     outs:
-      - data/evaluate
+      - data/prepared/train.tsv
+
+  feature:
+    cmd: python src/featurization.py data/prepared data/feature
+    deps:
+      - src/featurization.py
+      - data/prepared
+    params:
+      - featurize.max_features
+      - featurize.ngrams
+    outs:
+      - data/feature
+
+  train:
+    cmd: python src/train.py data/feature data/model
+    deps:
+      - src/train.py
+      - data/feature
+    params:
+      - train.seed
+      - train.n_est
+      - train.min_split

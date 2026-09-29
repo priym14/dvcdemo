@@ -1,6 +1,0 @@
-outs:
-- md5: b90b4a485c5bf8be3e5b85c1e1e744e5
-  size: 19
-  isexec: true
-  hash: md5
-  path: demo.txt
