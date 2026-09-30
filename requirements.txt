@@ -5,3 +5,4 @@ pyaml
 scipy
 matplotlib
 mlflow  
+dvclive
